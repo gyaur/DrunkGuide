@@ -1,0 +1,21 @@
+login screen - login (google)
+main screen - setup night(sync friends, other options), edit night, start night -> (alsó részén képernyõnek funkciók) ->mindenki kap notificationt, google calendarba belemegy, planned nights.
+local options, group options, group admin(s)
+drinking games tab
+challanges, achievements
+map tab (radio button, multi select)
+groups im in
+reminders
+plan your way home, (mentõhívó), (solutions for situations)
+get food nearby
+//connect credit card -> tab pay
+apps i wanna use (top 4?)
+
+also gomb menü:
+-> main menu
+-> friends (google acc)
+-> settings
+-> drinking games
+-> reminders
+-> take me home
+-> MAP
