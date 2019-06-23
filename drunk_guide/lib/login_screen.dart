@@ -16,6 +16,8 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: Text("Login with Google"),
                 color: Colors.blue,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
               )
             ],
           ),
