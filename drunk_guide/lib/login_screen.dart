@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               child: MaterialButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/MainScreen');
+                  Navigator.pushReplacementNamed(context, '/MainScreen');
                 },
                 child: Text(
                   "Login with Google",
