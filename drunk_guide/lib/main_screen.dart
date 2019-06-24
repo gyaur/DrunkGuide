@@ -9,6 +9,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 1;
+
+  BottomNavigationBarItem bottomNavigationBarItemBuilder(
+          IconData icon, String title) =>
+      BottomNavigationBarItem(icon: Icon(icon), title: Text(title));
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
             fit: BoxFit.fill,
             image: AssetImage("assets/temp_background.jpg"),
             colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.5), BlendMode.dstATop)),
+                Colors.transparent.withOpacity(0.5), BlendMode.dstATop)),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -31,15 +36,12 @@ class _MainScreenState extends State<MainScreen> {
         )),
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), title: Text("Settings")),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text("Home")),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.people), title: Text("Friends")),
+            bottomNavigationBarItemBuilder(Icons.settings, "Settings"),
+            bottomNavigationBarItemBuilder(Icons.home, "Home"),
+            bottomNavigationBarItemBuilder(Icons.people, "Friends"),
           ],
           selectedItemColor: Colors.amber,
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.grey.withAlpha(120),
           currentIndex: selectedIndex,
           onTap: (ind) {
             setState(() {
