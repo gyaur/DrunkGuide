@@ -1,3 +1,4 @@
+import 'package:drunk_guide/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -8,6 +9,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  List<Widget> pages = [
+    SettingsScreen(),
+    Text("1",
+        style: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 120, color: Colors.red)),
+    Text("2",
+        style: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 120, color: Colors.red))
+  ];
   int selectedIndex = 1;
 
   BottomNavigationBarItem bottomNavigationBarItemBuilder(
@@ -22,18 +32,11 @@ class _MainScreenState extends State<MainScreen> {
             fit: BoxFit.fill,
             image: AssetImage("assets/temp_background.jpg"),
             colorFilter: ColorFilter.mode(
-                Colors.transparent.withOpacity(0.5), BlendMode.dstATop)),
+                Colors.transparent.withOpacity(0.7), BlendMode.dstATop)),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Container(
-            child: Center(
-          child: Text(
-            selectedIndex.toString(),
-            style: TextStyle(
-                color: Colors.red, fontSize: 100, fontWeight: FontWeight.bold),
-          ),
-        )),
+        body: Container(child: pages[selectedIndex]),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             bottomNavigationBarItemBuilder(Icons.settings, "Settings"),
