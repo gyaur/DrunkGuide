@@ -24,6 +24,7 @@ Widget settingsItemBuilder(
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  //TODO: Add SharedPrefrences to save the settings
   List<bool> settings = [false, true, false];
   @override
   Widget build(BuildContext context) {
