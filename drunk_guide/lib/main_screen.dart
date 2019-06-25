@@ -1,4 +1,4 @@
-import 'package:drunk_guide/settings_screen.dart';
+import 'package:drunk_guide/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -10,10 +10,10 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Widget> pages = [
-    SettingsScreen(),
-    Text("1",
+    Text("0",
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 120, color: Colors.red)),
+    HomeScreen(),
     Text("2",
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 120, color: Colors.red))
@@ -26,32 +26,38 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage("assets/temp_background.jpg"),
-            colorFilter: ColorFilter.mode(
-                Colors.transparent.withOpacity(0.7), BlendMode.dstATop)),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample Text"),
+        backgroundColor: Colors.amber,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.people),
+          ),
+          IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.pushNamed(context, '/SettingsScreen');
+              }),
+        ],
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Container(child: pages[selectedIndex]),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            bottomNavigationBarItemBuilder(Icons.settings, "Settings"),
-            bottomNavigationBarItemBuilder(Icons.home, "Home"),
-            bottomNavigationBarItemBuilder(Icons.people, "Friends"),
-          ],
-          selectedItemColor: Colors.amber,
-          backgroundColor: Colors.grey.withAlpha(120),
-          currentIndex: selectedIndex,
-          onTap: (ind) {
-            setState(() {
-              selectedIndex = ind;
-            });
-          },
-        ),
+      backgroundColor: Colors.transparent,
+      body: Container(child: pages[selectedIndex]),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          bottomNavigationBarItemBuilder(Icons.settings, "NotSettings"),
+          bottomNavigationBarItemBuilder(Icons.home, "Home"),
+          bottomNavigationBarItemBuilder(Icons.people, "NotFriends"),
+        ],
+        selectedItemColor: Colors.amber,
+        backgroundColor: Colors.grey.withAlpha(120),
+        currentIndex: selectedIndex,
+        onTap: (ind) {
+          setState(() {
+            selectedIndex = ind;
+          });
+        },
       ),
     );
   }
