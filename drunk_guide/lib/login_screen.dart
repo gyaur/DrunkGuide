@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
+  void loginWithGoogle() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +15,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               child: MaterialButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/MainScreen');
+                  loginWithGoogle();
                 },
                 child: Text(
                   "Login with Google",
