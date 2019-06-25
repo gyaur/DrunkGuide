@@ -39,9 +39,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 "settingDescription",
                 Switch(
                   value: settings[0],
-                  onChanged: (tog) {
+                  onChanged: (toggle) {
                     setState(() {
-                      settings[0] = tog;
+                      settings[0] = toggle;
                     });
                   },
                 )),
@@ -50,9 +50,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 "settingDescription",
                 Switch(
                   value: settings[1],
-                  onChanged: (tog) {
+                  onChanged: (toggle) {
                     setState(() {
-                      settings[1] = tog;
+                      settings[1] = toggle;
                     });
                   },
                 )),
@@ -61,9 +61,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 "settingDescription",
                 Switch(
                   value: settings[2],
-                  onChanged: (tog) {
+                  onChanged: (toggle) {
                     setState(() {
-                      settings[2] = tog;
+                      settings[2] = toggle;
                     });
                   },
                 ))
