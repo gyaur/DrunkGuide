@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  void loginWithGoogle() {}
+  void loginWithGoogle() {}//TODO: Add logic
   @override
   Widget build(BuildContext context) {
     return Scaffold(
