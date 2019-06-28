@@ -25,16 +25,15 @@ class _DrunkGuideState extends State<DrunkGuide> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      home: FutureBuilder(
+          future: isLoggedIn(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data) {
+              return MainScreen();
+            }
+            return LoginScreen(prefs);
+          }),
       routes: <String, WidgetBuilder>{
-        '/': (context) => FutureBuilder(
-            future: isLoggedIn(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData && snapshot.data) {
-                return MainScreen();
-              }
-              return LoginScreen(prefs);
-            }),
         '/MainScreen': (context) => MainScreen(),
         '/SettingsScreen': (context) => SettingsScreen(),
       },
