@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  void loginWithGoogle() {}//TODO: Add logic
+  final sharedPrefs;
+  LoginScreen(this.sharedPrefs);
+  void loginWithGoogle(context) {
+    sharedPrefs.setBool("logged_in", true);
+    Navigator.pushReplacementNamed(context, "/MainScreen");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +21,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               child: MaterialButton(
                 onPressed: () {
-                  loginWithGoogle();
+                  loginWithGoogle(context);
                 },
                 child: Text(
                   "Login with Google",
