@@ -39,7 +39,10 @@ class _MainScreenState extends State<MainScreen> {
           future: getUser(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data.displayName + " is the Big Gay!");
+              if (snapshot.data.displayName.contains("Morva")) {
+                return Text(snapshot.data.displayName + " is the Big Gay!");
+              }
+              return Text(snapshot.data.displayName);
             }
             return Text("Something fucky");
           },
