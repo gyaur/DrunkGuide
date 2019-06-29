@@ -1,4 +1,5 @@
 import 'package:drunk_guide/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -9,6 +10,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  Future<FirebaseUser> getUser() async {
+    return await FirebaseAuth.instance.currentUser().then((data) {
+      return data;
+    });
+  }
+
   List<Widget> pages = [
     Text("0",
         style: TextStyle(
@@ -28,7 +35,15 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sample Text"),
+        title: FutureBuilder(
+          future: getUser(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text(snapshot.data.displayName + " is the Big Gay!");
+            }
+            return Text("Something fucky");
+          },
+        ),
         backgroundColor: Colors.amber,
         actions: <Widget>[
           IconButton(
