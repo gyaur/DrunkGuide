@@ -61,16 +61,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   },
                 )),
             settingsItemBuilder(
-                "settingTitle",
-                "settingDescription",
-                Switch(
-                  value: settings[2],
-                  onChanged: (toggle) {
-                    setState(() {
+              "settingTitle",
+              "settingDescription",
+              Switch(
+                value: settings[2],
+                onChanged: (toggle) {
+                  setState(
+                    () {
                       settings[2] = toggle;
-                    });
-                  },
-                ))
+                    },
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),
