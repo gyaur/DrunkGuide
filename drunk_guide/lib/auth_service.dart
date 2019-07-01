@@ -47,17 +47,24 @@ class AuthService {
 
   void updateUserData(FirebaseUser user) async {
     DocumentReference ref = _db.collection('users').document(user.uid);
-    //TODO: Check if user has friends and dont override them
-    //if user is already in the db don't update friends
+    List<String> friends = [];
+    await Firestore.instance
+        .collection('users')
+        .document(user.uid)
+        .get()
+        .then((DocumentSnapshot ds) {
+      friends = ds.data['friends']?.cast<String>() ?? [];
+      //friends = List<String>.from(friends);
+    });
 
-    return ref.setData(
+    ref.setData(
       {
         'uid': user.uid,
         'email': user.email,
         'photoURL': user.photoUrl,
         'displayName': user.displayName,
         'lastSeen': DateTime.now(),
-        'friends': []
+        'friends': friends
       },
       merge: true,
     );
