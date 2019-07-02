@@ -88,6 +88,7 @@ class AuthService {
         .document(uid)
         .get()
         .then((DocumentSnapshot ds) {
+          //TODO: Check for case when no user exists with this uid
       user = User.fromFirestore(ds);
       //friends = List<String>.from(friends);
     });
