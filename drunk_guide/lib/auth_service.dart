@@ -68,7 +68,7 @@ class AuthService {
       //friends = List<String>.from(friends);
     });
 
-    ref.setData(
+    return ref.setData(
       {
         'uid': user.uid,
         'email': user.email,
