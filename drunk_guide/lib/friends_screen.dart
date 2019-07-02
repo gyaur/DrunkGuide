@@ -62,7 +62,7 @@ class FriendsScreen extends StatelessWidget {
               },
             );
           }
-          return Center(child: Text(""));
+          return Center(child: CircularProgressIndicator());
         },
       ),
       floatingActionButton: FloatingActionButton(
