@@ -1,3 +1,4 @@
+import 'package:drunk_guide/friends_screen.dart';
 import 'package:drunk_guide/main_screen.dart';
 import 'package:drunk_guide/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _DrunkGuideState extends State<DrunkGuide> {
       routes: <String, WidgetBuilder>{
         '/MainScreen': (context) => MainScreen(),
         '/SettingsScreen': (context) => SettingsScreen(),
+        '/FriendsScreen': (context) => FriendsScreen(),
       },
     );
   }

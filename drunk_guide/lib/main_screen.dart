@@ -50,7 +50,9 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: Colors.amber,
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/FriendsScreen');
+            },
             icon: Icon(Icons.people),
           ),
           IconButton(

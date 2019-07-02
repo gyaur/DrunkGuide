@@ -5,8 +5,8 @@ class User {
   final String email;
   final String photoURL;
   final String displayName;
-  final DateTime lastSeen;
-  final List<String> friends;
+  final Timestamp lastSeen;
+  final List<dynamic> friends;
 
   User(
       {this.uid,
