@@ -11,7 +11,7 @@ class AuthService {
 
   Observable<FirebaseUser> user;
   Observable<User> profile;
-  Observable<List<User>> friends;
+  Observable<Future<List<User>>> friends;
 
   AuthService() {
     user = Observable(_auth.onAuthStateChanged);
@@ -29,12 +29,12 @@ class AuthService {
     });
     friends = user.switchMap((FirebaseUser u) {
       if (u != null) {
-        return _db.collection('users').document(u.uid).snapshots().map((snap) =>
-            snap.data['friends']
-                .cast<String>()
-                .map((String uid) => (getUserfromUid(uid))));
+        return _db.collection('users').document(u.uid).snapshots().map(
+            (snap) async => await Future.wait(List.from(
+                List<String>.from(snap.data['friends'].cast<String>())
+                    .map((String uid) => (getUserfromUid(uid))))));
       } else {
-        return Observable.just([]);
+        return Observable.just(Future.wait([]));
       }
     });
   }
@@ -82,7 +82,7 @@ class AuthService {
   }
 
   Future<User> getUserfromUid(String uid) async {
-    User user;
+    var user;
     await Firestore.instance
         .collection('users')
         .document(uid)
@@ -91,6 +91,7 @@ class AuthService {
       user = User.fromFirestore(ds);
       //friends = List<String>.from(friends);
     });
+
     return user;
   }
 }
