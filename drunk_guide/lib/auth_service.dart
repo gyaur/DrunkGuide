@@ -64,7 +64,9 @@ class AuthService {
         .document(user.uid)
         .get()
         .then((DocumentSnapshot ds) {
-      friends = ds.data['friends']?.cast<String>() ?? [];
+      if (ds.data != null) {
+        friends = ds.data['friends']?.cast<String>() ?? [];
+      }
       //friends = List<String>.from(friends);
     });
 
