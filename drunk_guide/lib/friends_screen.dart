@@ -34,7 +34,11 @@ class FriendsScreen extends StatelessWidget {
               )
               .toList());
     }
-    return Center(child: Text("No friends :("));
+    return Center(
+        child: Text(
+      "No friends :(",
+      style: TextStyle(color: Colors.white),
+    ));
   }
 
   @override
