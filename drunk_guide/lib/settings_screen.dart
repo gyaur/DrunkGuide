@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'settings_service.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -33,17 +34,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text("Settings"),
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
         child: Column(
           children: <Widget>[
             settingsItemBuilder(
                 "settingTitle",
                 "settingDescription",
                 Switch(
-                  value: settings[0],
+                  value: settingsService.getSetting("setting1"),
                   onChanged: (toggle) {
                     setState(() {
-                      settings[0] = toggle;
+                      settingsService.changeSetting("setting1", toggle);
                     });
                   },
                 )),
@@ -51,10 +51,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 "settingTitle",
                 "settingDescription",
                 Switch(
-                  value: settings[1],
+                  value: settingsService.getSetting("setting2"),
                   onChanged: (toggle) {
                     setState(() {
-                      settings[1] = toggle;
+                      settingsService.changeSetting("setting2", toggle);
                     });
                   },
                 )),
@@ -62,13 +62,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
               "settingTitle",
               "settingDescription",
               Switch(
-                value: settings[2],
+                value: settingsService.getSetting("setting3"),
                 onChanged: (toggle) {
-                  setState(
-                    () {
-                      settings[2] = toggle;
-                    },
-                  );
+                  setState(() {
+                    settingsService.changeSetting("setting3", toggle);
+                  });
                 },
               ),
             )
