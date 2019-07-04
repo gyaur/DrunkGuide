@@ -47,7 +47,6 @@ class _MainScreenState extends State<MainScreen> {
             return Text("Something fucky");
           },
         ),
-        backgroundColor: Colors.amber,
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -62,7 +61,6 @@ class _MainScreenState extends State<MainScreen> {
               }),
         ],
       ),
-      backgroundColor: Colors.transparent,
       body: Container(child: pages[selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -70,8 +68,8 @@ class _MainScreenState extends State<MainScreen> {
           bottomNavigationBarItemBuilder(Icons.home, "Home"),
           bottomNavigationBarItemBuilder(Icons.people, "NotFriends"),
         ],
-        selectedItemColor: Colors.amber,
-        backgroundColor: Colors.grey.withAlpha(120),
+        backgroundColor: Colors.white10,
+        elevation: 0,
         currentIndex: selectedIndex,
         onTap: (ind) {
           setState(() {

@@ -31,7 +31,6 @@ class LoginScreen extends StatelessWidget {
                   "Login with Google",
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
-                color: Colors.blue,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)),
                 minWidth: 300,

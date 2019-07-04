@@ -37,7 +37,6 @@ class FriendsScreen extends StatelessWidget {
     return Center(
         child: Text(
       "No friends :(",
-      style: TextStyle(color: Colors.white),
     ));
   }
 
@@ -46,9 +45,7 @@ class FriendsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Friends"),
-        backgroundColor: Colors.amber,
       ),
-      backgroundColor: Colors.transparent,
       body: StreamBuilder(
         stream: authService.friends,
         builder: (context, snapshot) {
@@ -68,7 +65,6 @@ class FriendsScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {/*TODO: Add functionality*/},
         child: Icon(Icons.add),
-        backgroundColor: Colors.amber,
       ),
     );
   }
