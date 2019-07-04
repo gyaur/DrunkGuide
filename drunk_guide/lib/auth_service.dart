@@ -98,5 +98,3 @@ class AuthService {
     return user;
   }
 }
-
-final AuthService authService = AuthService();

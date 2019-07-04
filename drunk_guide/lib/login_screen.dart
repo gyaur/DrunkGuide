@@ -1,3 +1,4 @@
+import 'package:drunk_guide/globals.dart';
 import 'package:flutter/material.dart';
 
 import 'auth_service.dart';
@@ -6,7 +7,7 @@ class LoginScreen extends StatelessWidget {
   final sharedPrefs;
   LoginScreen(this.sharedPrefs);
   Future loginWithGoogle(context) async {
-    await authService.handleSignIn();
+    await services.get<AuthService>().handleSignIn();
     sharedPrefs.setBool(
         "logged_in", true); //TODO: Use FirebaseAuth to check sign in status
     Navigator.pushReplacementNamed(context, "/MainScreen");

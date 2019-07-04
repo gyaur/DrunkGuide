@@ -1,11 +1,18 @@
+import 'package:drunk_guide/auth_service.dart';
 import 'package:drunk_guide/friends_screen.dart';
+import 'package:drunk_guide/globals.dart';
 import 'package:drunk_guide/login_screen.dart';
 import 'package:drunk_guide/main_screen.dart';
 import 'package:drunk_guide/settings_screen.dart';
+import 'package:drunk_guide/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(DrunkGuide());
+void main() {
+  services.registerSingleton<SettingsService>(SettingsService());
+  services.registerSingleton<AuthService>(AuthService());
+  runApp(DrunkGuide());
+}
 
 class DrunkGuide extends StatefulWidget {
   @override

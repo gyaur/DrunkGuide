@@ -1,6 +1,8 @@
+import 'package:drunk_guide/settings_service.dart';
+import 'package:drunk_guide/settings_service.dart' as prefix0;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'settings_service.dart';
+import 'globals.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -26,6 +28,7 @@ Widget settingsItemBuilder(
 
 class _SettingsScreenState extends State<SettingsScreen> {
   //TODO: Add SharedPrefrences to save the settings
+  final settingsService = services.get<SettingsService>();
   List<bool> settings = [false, true, false];
   @override
   Widget build(BuildContext context) {

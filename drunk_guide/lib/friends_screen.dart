@@ -1,4 +1,5 @@
 import 'package:drunk_guide/auth_service.dart';
+import 'package:drunk_guide/globals.dart';
 import 'package:drunk_guide/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -47,7 +48,7 @@ class FriendsScreen extends StatelessWidget {
         title: Text("Friends"),
       ),
       body: StreamBuilder(
-        stream: authService.friends,
+        stream: services.get<AuthService>().friends,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return FutureBuilder(

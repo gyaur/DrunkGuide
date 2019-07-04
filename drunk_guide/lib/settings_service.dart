@@ -9,7 +9,8 @@ class SettingsService {
   SettingsService() {
     SharedPreferences.getInstance().then((pref) {
       prefs = pref;
-      List<String> temp = prefs.getStringList("settings") ?? [];
+      List<String> temp = prefs.getStringList("settings") ??
+          List.filled(settingsKeys.length, "false");
       if (temp.length > 0) {
         settingsItems = Map.fromIterables(
             settingsKeys, temp.map((String key) => stringtoBool(key)));
@@ -41,5 +42,3 @@ class SettingsService {
     return settingsItems[key] ?? false;
   }
 }
-
-SettingsService settingsService = SettingsService();
