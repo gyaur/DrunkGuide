@@ -22,26 +22,13 @@ class DrunkGuide extends StatefulWidget {
 }
 
 class _DrunkGuideState extends State<DrunkGuide> {
-  SharedPreferences prefs;
-  Future<bool> isLoggedIn() async {
-    prefs = await SharedPreferences.getInstance();
-    return prefs.getBool("logged_in") ?? false;
-    //TODO:Make const variables for keys
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FutureBuilder(
-          future: isLoggedIn(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return snapshot.data ? MainScreen() : LoginScreen(prefs);
-            }
-            return Center(child: CircularProgressIndicator());
-          }),
+      home: Landing(),
       routes: <String, WidgetBuilder>{
         '/MainScreen': (context) => MainScreen(),
+        '/LoginScreen': (context) => LoginScreen(),
         '/SettingsScreen': (context) => SettingsScreen(),
         '/FriendsScreen': (context) => FriendsScreen(),
       },
@@ -52,5 +39,37 @@ class _DrunkGuideState extends State<DrunkGuide> {
         accentColor: Colors.amberAccent,
       ),
     );
+  }
+}
+
+class Landing extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _LandingState();
+  }
+}
+
+class _LandingState extends State<Landing> {
+  SharedPreferences prefs;
+
+  Future<bool> isLoggedIn() async {
+    return (await SharedPreferences.getInstance()).getBool("logged_in") ??
+        false;
+    //TODO: Make const variables for keys
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    isLoggedIn().then((loggedIn) {
+      Navigator.pushReplacementNamed(
+          context, loggedIn ? '/MainScreen' : '/LoginScreen');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator());
   }
 }

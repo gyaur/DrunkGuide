@@ -3,6 +3,7 @@ import 'package:drunk_guide/globals.dart';
 import 'package:drunk_guide/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rxdart/rxdart.dart';
 
 class FriendsScreen extends StatelessWidget {
   Widget getUserWidget(List<User> users) {
@@ -11,7 +12,7 @@ class FriendsScreen extends StatelessWidget {
           children: users
               .where((user) => (user != null))
               .map(
-                (user) => (Card(
+                  (user) => Card(
                       child: Row(
                         children: <Widget>[
                           Container(
@@ -31,7 +32,7 @@ class FriendsScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                    )),
+                    ),
               )
               .toList());
     }
@@ -48,19 +49,11 @@ class FriendsScreen extends StatelessWidget {
         title: Text("Friends"),
       ),
       body: StreamBuilder(
-        stream: services.get<AuthService>().friends,
+        stream: services.get<AuthService>().friends
+          .switchMap((list) => Observable.fromFuture(list))
+          .map((list) => getUserWidget(list)),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return FutureBuilder(
-              future: snapshot.data,
-              builder: (context, snapshot) {
-                if (snapshot.hasData)
-                  return Center(child: getUserWidget(snapshot.data));
-                return Center(child: CircularProgressIndicator());
-              },
-            );
-          }
-          return Center(child: CircularProgressIndicator());
+          return Center(child: snapshot.data ?? CircularProgressIndicator());
         },
       ),
       floatingActionButton: FloatingActionButton(

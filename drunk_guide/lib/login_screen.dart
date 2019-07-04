@@ -1,11 +1,12 @@
 import 'package:drunk_guide/globals.dart';
+import 'package:drunk_guide/settings_service.dart';
 import 'package:flutter/material.dart';
 
 import 'auth_service.dart';
 
 class LoginScreen extends StatelessWidget {
-  final sharedPrefs;
-  LoginScreen(this.sharedPrefs);
+  final sharedPrefs = services.get<SettingsService>().prefs;
+  LoginScreen();
   Future loginWithGoogle(context) async {
     await services.get<AuthService>().handleSignIn();
     sharedPrefs.setBool(

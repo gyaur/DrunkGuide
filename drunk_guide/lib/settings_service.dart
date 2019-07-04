@@ -18,14 +18,7 @@ class SettingsService {
     });
   }
   bool stringtoBool(String inp) {
-    switch (inp) {
-      case "true":
-        return true;
-      case "false":
-        return false;
-      default:
-        return false;
-    }
+    return inp == 'true';
   }
 
   void changeSetting(String key, bool value) {
