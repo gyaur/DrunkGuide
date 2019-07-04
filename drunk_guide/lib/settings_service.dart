@@ -1,16 +1,45 @@
-class SettingsService{
-Map<String,bool> settingsItems;
+import 'package:shared_preferences/shared_preferences.dart';
 
-SettingsService(){
+class SettingsService {
+  static const List<String> settingsKeys = ["setting1", "setting2", "setting3"];
+  Map<String, bool> settingsItems;
 
+  SharedPreferences prefs;
 
-}
-void changeSetting(){
+  SettingsService() {
+    SharedPreferences.getInstance().then((pref) {
+      prefs = pref;
+      List<String> temp = prefs.getStringList("settings") ?? [];
+      if (temp.length > 0) {
+        settingsItems = Map.fromIterables(
+            settingsKeys, temp.map((String key) => stringtoBool(key)));
+      }
+    });
+  }
+  bool stringtoBool(String inp) {
+    switch (inp) {
+      case "true":
+        return true;
+      case "false":
+        return false;
+      default:
+        return false;
+    }
+  }
 
-}
-bool getSetting(){
-  return true;
-}
+  void changeSetting(String key, bool value) {
+    if (settingsItems.containsKey(key)) {
+      settingsItems[key] = value;
+      prefs.setStringList(
+          "settings",
+          List.from(
+              settingsItems.values.map((setting) => (setting.toString()))));
+    }
+  }
+
+  bool getSetting(String key) {
+    return settingsItems[key] ?? false;
+  }
 }
 
 SettingsService settingsService = SettingsService();
