@@ -6,7 +6,7 @@ class User {
   final String photoURL;
   final String displayName;
   final Timestamp lastSeen;
-  final List<dynamic> friends;
+  final List<String> friends;
 
   User(
       {this.uid,
@@ -25,7 +25,7 @@ class User {
       photoURL: data['photoURL'],
       displayName: data['displayName'],
       lastSeen: data['lastSeen'],
-      friends: data['friends'],
+      friends: data['friends'].cast<String>(),
     );
   }
 }

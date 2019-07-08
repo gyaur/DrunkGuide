@@ -9,8 +9,8 @@ class LoginScreen extends StatelessWidget {
   LoginScreen();
   Future loginWithGoogle(context) async {
     await services.get<AuthService>().handleSignIn();
-    sharedPrefs.setBool(
-        "logged_in", true); //TODO: Use FirebaseAuth to check sign in status
+    sharedPrefs.setBool("logged_in", true);
+    //TODO: Use FirebaseAuth to check sign in status
     Navigator.pushReplacementNamed(context, "/MainScreen");
   }
 
@@ -26,6 +26,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Container(
               child: MaterialButton(
+                color: Theme.of(context).buttonColor,
                 onPressed: () {
                   loginWithGoogle(context);
                 },
@@ -38,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                 minWidth: 300,
                 height: 50,
               ),
-              padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+              padding: EdgeInsets.only(top: 10),
             )
           ],
         ),

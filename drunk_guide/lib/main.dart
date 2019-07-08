@@ -33,7 +33,6 @@ class _DrunkGuideState extends State<DrunkGuide> {
         '/FriendsScreen': (context) => FriendsScreen(),
       },
       theme: ThemeData(
-        backgroundColor: Colors.transparent,
         brightness: Brightness.dark,
         primaryColor: Colors.amber,
         accentColor: Colors.amberAccent,

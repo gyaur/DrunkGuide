@@ -84,15 +84,14 @@ class AuthService {
   }
 
   Future<User> getUserfromUid(String uid) async {
-    var user;
+    User user;
     await Firestore.instance
         .collection('users')
         .document(uid)
         .get()
         .then((DocumentSnapshot ds) {
-      //TODO: Check for case when no user exists with this uid
+      if (ds.data == null) return null;
       user = User.fromFirestore(ds);
-      //friends = List<String>.from(friends);
     });
 
     return user;
